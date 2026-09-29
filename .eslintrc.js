@@ -4,6 +4,8 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  // Lint root dotfile configs (.eslintrc.js, .prettierrc.js) instead of warning they are ignored
+  ignorePatterns: ['!.*.js'],
   plugins: ['@typescript-eslint', 'simple-import-sort', 'unused-imports'],
   extends: [
     'eslint:recommended',
