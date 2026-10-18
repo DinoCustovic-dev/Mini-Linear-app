@@ -1,15 +1,15 @@
-// !STARTERCONF You should delete this page
-
-import { render, screen } from '@testing-library/react';
+import { redirect } from 'next/navigation';
 
 import HomePage from '@/app/page';
 
-describe('Homepage', () => {
-  it('renders the Components', () => {
-    render(<HomePage />);
+jest.mock('next/navigation', () => ({
+  redirect: jest.fn(),
+}));
 
-    const heading = screen.getByText(/A starter for Next.js/i);
+describe('HomePage', () => {
+  it('redirects to My issues', () => {
+    HomePage();
 
-    expect(heading).toBeInTheDocument();
+    expect(redirect).toHaveBeenCalledWith('/my-issues');
   });
 });
