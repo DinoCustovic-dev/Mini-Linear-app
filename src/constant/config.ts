@@ -1,7 +1,6 @@
 export const siteConfig = {
-  title: 'Next.js + Tailwind CSS + TypeScript Starter',
-  description:
-    'A starter for Next.js, Tailwind CSS, and TypeScript with Absolute Import, Seo, Link component, pre-configured with Husky',
-  /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
-  url: 'https://tsnext-tw.thcl.dev',
+  title: 'Mini Linear',
+  description: 'Mini Linear: issue tracking for small teams.',
+  /** Without trailing '/', e.g. https://mini-linear.vercel.app */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
 };
