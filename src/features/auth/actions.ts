@@ -8,14 +8,13 @@ import type { ZodError } from 'zod';
 import type { ActionResult } from '@/lib/action-result';
 import { createClient } from '@/lib/supabase/server';
 
+import { siteConfig } from '@/constant/config';
 import {
   type SignInInput,
   type SignUpInput,
   signInSchema,
   signUpSchema,
 } from '@/features/auth/schema';
-
-import { siteConfig } from '@/constant/config';
 
 const HOME_PATH = '/projects';
 const LOGIN_PATH = '/login';
@@ -109,9 +108,7 @@ export async function signUp(
 }
 
 /** Prijava emailom i lozinkom. Nakon uspjeha korisnik ide na /projects. */
-export async function signIn(
-  input: SignInInput
-): Promise<ActionResult<never>> {
+export async function signIn(input: SignInInput): Promise<ActionResult<never>> {
   const parsed = signInSchema.safeParse(input);
   if (!parsed.success) return validationError(parsed.error);
 
