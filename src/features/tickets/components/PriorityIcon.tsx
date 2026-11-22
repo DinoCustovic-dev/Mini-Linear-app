@@ -3,7 +3,10 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
-import { type TicketPriority, PRIORITY_LABELS } from '@/features/tickets/labels';
+import {
+  type TicketPriority,
+  PRIORITY_LABELS,
+} from '@/features/tickets/labels';
 
 const ICONS = {
   low: { Icon: ArrowDown, className: 'text-gray-400' },
@@ -24,7 +27,10 @@ export default function PriorityIcon({
 }) {
   const { Icon, className: color } = ICONS[priority];
   return (
-    <span title={`${PRIORITY_LABELS[priority]} priority`} className='inline-flex'>
+    <span
+      title={`${PRIORITY_LABELS[priority]} priority`}
+      className='inline-flex'
+    >
       <Icon aria-hidden className={cn('size-4', color, className)} />
       <span className='sr-only'>{PRIORITY_LABELS[priority]} priority</span>
     </span>

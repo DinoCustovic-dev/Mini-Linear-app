@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import Button from '@/components/buttons/Button';
 import UnstyledLink from '@/components/links/UnstyledLink';
 
-import { createTicket, type TicketRef } from '@/features/tickets/actions';
+import { type TicketRef, createTicket } from '@/features/tickets/actions';
 import AssigneePicker, {
   type Person,
 } from '@/features/tickets/components/AssigneePicker';

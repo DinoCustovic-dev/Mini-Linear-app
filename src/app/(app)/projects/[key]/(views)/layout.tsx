@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
 import * as React from 'react';
 
+import { listProfiles } from '@/features/profiles/queries';
 import { loadProject } from '@/features/projects/cached';
 import ViewToggle from '@/features/projects/components/ViewToggle';
-import { listProfiles } from '@/features/profiles/queries';
 import NewTicketButton from '@/features/tickets/components/NewTicketButton';
 
 type ProjectLayoutProps = {

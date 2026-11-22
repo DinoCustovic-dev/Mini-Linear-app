@@ -190,7 +190,8 @@ export async function removeLabelFromTicket(
     .maybeSingle();
 
   if (error) return databaseError(error, { message: 'Label already exists' });
-  if (!data) return { ok: false, error: 'This ticket does not have that label' };
+  if (!data)
+    return { ok: false, error: 'This ticket does not have that label' };
 
   revalidateLabels();
   return { ok: true, data: { ticketId: ticket.data, labelId: label.data } };

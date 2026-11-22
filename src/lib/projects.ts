@@ -1,4 +1,7 @@
-import { createClient, getCurrentUser as getAuthUser } from '@/lib/supabase/server';
+import {
+  createClient,
+  getCurrentUser as getAuthUser,
+} from '@/lib/supabase/server';
 
 import { listProjects } from '@/features/projects/queries';
 

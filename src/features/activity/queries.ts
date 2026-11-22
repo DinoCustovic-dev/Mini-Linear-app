@@ -53,7 +53,8 @@ export async function listActivity(ticketId: string) {
       .in('id', Array.from(ids));
     if (peopleError) throw peopleError;
     for (const person of people) {
-      assigneeNames[person.id] = person.full_name ?? person.email ?? 'Unknown user';
+      assigneeNames[person.id] =
+        person.full_name ?? person.email ?? 'Unknown user';
     }
   }
 

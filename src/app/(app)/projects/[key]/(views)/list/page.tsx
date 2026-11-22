@@ -15,7 +15,7 @@ import {
   PRIORITY_LABELS,
   STATUS_LABELS,
 } from '@/features/tickets/labels';
-import { listTickets, type TicketWithPeople } from '@/features/tickets/queries';
+import { type TicketWithPeople, listTickets } from '@/features/tickets/queries';
 import { TICKET_PRIORITIES, TICKET_STATUSES } from '@/features/tickets/schema';
 
 type ListPageProps = {
@@ -71,7 +71,10 @@ function parseSort(sort?: string, dir?: string): [SortField, SortDir] {
   return [field, dir === 'desc' ? 'desc' : 'asc'];
 }
 
-export default async function ListPage({ params, searchParams }: ListPageProps) {
+export default async function ListPage({
+  params,
+  searchParams,
+}: ListPageProps) {
   const [{ key }, query] = await Promise.all([params, searchParams]);
   const project = await loadProject(key);
   if (!project) notFound();
@@ -187,7 +190,10 @@ export default async function ListPage({ params, searchParams }: ListPageProps) 
           })}
           {sorted.length === 0 && (
             <tr>
-              <td colSpan={COLUMNS.length} className='px-3 py-8 text-center text-gray-400'>
+              <td
+                colSpan={COLUMNS.length}
+                className='px-3 py-8 text-center text-gray-400'
+              >
                 No tickets yet
               </td>
             </tr>

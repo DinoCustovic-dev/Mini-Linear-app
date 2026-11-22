@@ -1,6 +1,6 @@
 'use client';
 
-import { LayoutList, Columns3 } from 'lucide-react';
+import { Columns3, LayoutList } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import * as React from 'react';
 
