@@ -18,7 +18,7 @@ export default async function ProjectsPage() {
         {projects.map((project) => (
           <li key={project.id}>
             <UnstyledLink
-              href={`/projects/${project.id}`}
+              href={`/projects/${project.key}`}
               className='flex items-center gap-3 rounded-md border border-gray-200 p-3 hover:bg-gray-50'
             >
               <span

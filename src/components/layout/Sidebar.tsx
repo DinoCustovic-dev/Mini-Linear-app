@@ -47,7 +47,7 @@ export default function Sidebar({ projects }: SidebarProps) {
           {projects.map((project) => (
             <SidebarLink
               key={project.id}
-              href={`/projects/${project.id}`}
+              href={`/projects/${project.key}`}
               matchNested
               icon={
                 <span
