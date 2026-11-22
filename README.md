@@ -131,3 +131,35 @@ Check out the [expansion pack repository](https://github.com/theodorusclarence/e
 ### App Router Update
 
 Due to App Router update, the expansion pack is currently **outdated**. It will be updated in the future. You can still use them by copy and pasting the files.
+
+## Database (Supabase)
+
+The schema lives in `supabase/migrations/` and demo data in `supabase/seed.sql`. The commands below run against the linked cloud project, so Docker is not required.
+
+One-time setup:
+
+```bash
+yarn supabase login
+yarn supabase link --project-ref <project-ref>
+```
+
+### Migrations
+
+```bash
+yarn supabase migration new <name>   # create an empty migration file
+yarn db:push --dry-run               # list migrations that would be applied
+yarn db:push                         # apply pending migrations
+yarn db:push --include-seed          # apply migrations and run supabase/seed.sql
+```
+
+Applied migrations are not edited afterwards; add a new migration instead. The seed creates three demo users with a shared password (see the top of `supabase/seed.sql`), so do not run it against a production project.
+
+### Generating types
+
+Regenerate the TypeScript types after every schema change:
+
+```bash
+yarn db:types
+```
+
+This writes `src/types/database.types.ts` from the linked project. Use the script rather than redirecting the CLI output yourself in PowerShell, which saves the file as UTF-16. With a local Docker stack, `yarn db:types:local` does the same from the local database.
