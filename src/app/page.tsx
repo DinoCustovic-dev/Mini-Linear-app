@@ -1,7 +1,6 @@
+import { redirect } from 'next/navigation';
+
+// TODO(ML-05): send logged-out users to /login instead
 export default function HomePage() {
-  return (
-    <main className='flex min-h-screen items-center justify-center bg-white'>
-      <h1>Hello World</h1>
-    </main>
-  );
+  redirect('/my-issues');
 }

@@ -1,11 +1,15 @@
-import { render, screen } from '@testing-library/react';
+import { redirect } from 'next/navigation';
 
 import HomePage from '@/app/page';
 
-describe('HomePage', () => {
-  it('renders the placeholder', () => {
-    render(<HomePage />);
+jest.mock('next/navigation', () => ({
+  redirect: jest.fn(),
+}));
 
-    expect(screen.getByText('Hello World')).toBeInTheDocument();
+describe('HomePage', () => {
+  it('redirects to My issues', () => {
+    HomePage();
+
+    expect(redirect).toHaveBeenCalledWith('/my-issues');
   });
 });
