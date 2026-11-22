@@ -50,10 +50,10 @@ export async function listActivity(ticketId: string) {
     const { data: people, error: peopleError } = await supabase
       .from('profiles')
       .select('id, full_name, email')
-      .in('id', [...ids]);
+      .in('id', Array.from(ids));
     if (peopleError) throw peopleError;
     for (const person of people) {
-      assigneeNames[person.id] = person.full_name ?? person.email;
+      assigneeNames[person.id] = person.full_name ?? person.email ?? 'Unknown user';
     }
   }
 
