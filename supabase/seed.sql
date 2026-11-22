@@ -1,4 +1,4 @@
--- Demo data: 3 users, 2 projects, 15 tickets, 5 labels, a few comments.
+-- Demo data: 3 users, 2 projects, 15 tickets, 5 labels per project, a few comments.
 -- Safe to run more than once. Apply to the linked project with:
 --   yarn db:push --include-seed
 --
@@ -99,13 +99,20 @@ on conflict do nothing;
 
 -- Labels ----------------------------------------------------------------------
 
-insert into public.labels (name, color)
-values
-  ('bug', '#ef4444'),
-  ('feature', '#3b82f6'),
-  ('design', '#a855f7'),
-  ('tech-debt', '#f59e0b'),
-  ('docs', '#10b981')
+-- Labels are per project, so every demo project gets the same five.
+
+insert into public.labels (project_id, name, color)
+select p.id, l.name, l.color
+from public.projects p
+cross join (
+  values
+    ('bug', '#ef4444'),
+    ('feature', '#3b82f6'),
+    ('design', '#a855f7'),
+    ('tech-debt', '#f59e0b'),
+    ('docs', '#10b981')
+) as l (name, color)
+where p.key in ('FT', 'MOB')
 on conflict do nothing;
 
 -- Tickets ---------------------------------------------------------------------
@@ -174,7 +181,7 @@ from (
 ) as tl (project_key, number, label_name)
 join public.projects p on p.key = tl.project_key
 join public.tickets t on t.project_id = p.id and t.number = tl.number
-join public.labels l on l.name = tl.label_name
+join public.labels l on l.project_id = p.id and l.name = tl.label_name
 on conflict do nothing;
 
 -- Comments --------------------------------------------------------------------

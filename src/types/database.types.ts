@@ -110,20 +110,31 @@ export type Database = {
           created_at: string;
           id: string;
           name: string;
+          project_id: string;
         };
         Insert: {
           color?: string;
           created_at?: string;
           id?: string;
           name: string;
+          project_id: string;
         };
         Update: {
           color?: string;
           created_at?: string;
           id?: string;
           name?: string;
+          project_id?: string;
         };
-        Relationships: [];
+        Relationships: [
+          {
+            foreignKeyName: 'labels_project_id_fkey';
+            columns: ['project_id'];
+            isOneToOne: false;
+            referencedRelation: 'projects';
+            referencedColumns: ['id'];
+          },
+        ];
       };
       profiles: {
         Row: {
